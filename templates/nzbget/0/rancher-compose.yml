@@ -3,7 +3,7 @@
   version: 16.4
   description: |
     NZBGet is a usenet downloader, written in C++ and designed with performance in mind to achieve maximum download speed by using very little system resources.
-  minimum_rancher_version: v1.11.0
+  minimum_rancher_version: v1.1.0
   maintainer: "NerdNobs"
   uuid: nn-nzbget-0
   questions:
