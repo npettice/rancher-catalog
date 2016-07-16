@@ -1,0 +1,30 @@
+.catalog:
+  name: NZBGet
+  version: 16.4
+  description: |
+    NZBGet is a usenet downloader, written in C++ and designed with performance in mind to achieve maximum download speed by using very little system resources.
+  minimum_rancher_version: v1.11.0
+  maintainer: "NerdNobs"
+  uuid: nn-nzbget-0
+  questions:
+    - variable: "nzbget_config_volume"
+      label: "Config Volume"
+      required: true
+      default: "nzbget-config"
+      type: "string"
+    - variable: "nzbget_downloads_volume"
+      label: "Downloads Volume"
+      required: true
+      default: "nzbget-downloads"
+      type: "string"
+
+nzbget:
+  scale: 1
+  health_check:
+    port: 6789
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000

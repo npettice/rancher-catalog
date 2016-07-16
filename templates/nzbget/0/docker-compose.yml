@@ -1,0 +1,13 @@
+nzbget:
+  ports:
+  - 6789:6789/tcp
+  environment:
+    PUID: '5000'
+    PGID: '5000'
+  labels:
+    io.rancher.container.pull_image: always
+  tty: true
+  image: linuxserver/nzbget
+  volumes:
+  - /remote/config/nzbget:/config
+  - /incoming/nzb:/downloads
