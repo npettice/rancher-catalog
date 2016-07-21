@@ -11,6 +11,9 @@ nzbget-lb:
   links:
     - nzbget-app:nzbget-app
   stdin_open: true
+  depends_on:
+    - nzbget-le
+    - nzbget-app
 nzbget-app:
   ports:
     - 36789:6789
