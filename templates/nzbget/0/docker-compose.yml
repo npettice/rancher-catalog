@@ -1,6 +1,6 @@
 nzbget-lb:
   ports:
-  - ${nzbget_ip}:443:36789
+    - ${nzbget_ip}:443:6789
   labels:
     io.rancher.loadbalancer.ssl.ports: '443'
     io.rancher.scheduler.affinity:host_label: lb_host=true
@@ -8,7 +8,7 @@ nzbget-lb:
   tty: true
   image: rancher/load-balancer-service
   links:
-  - nzbget-app:nzbget-app
+    - nzbget-app:nzbget-app
   stdin_open: true
 nzbget-app:
   ports:
@@ -23,8 +23,8 @@ nzbget-app:
   tty: true
   image: linuxserver/nzbget
   volumes:
-  - ${nzbget_config_volume}:/config
-  - ${nzbget_downloads_volume}:/downloads
+    - ${nzbget_config_volume}:/config
+    - ${nzbget_downloads_volume}:/downloads
 nzbget-le:
   image: janeczku/rancher-letsencrypt:v0.3.0
   environment:
