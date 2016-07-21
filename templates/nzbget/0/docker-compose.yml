@@ -18,6 +18,7 @@ nzbget-app:
     PGID: '5000'
   labels:
     io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: config_store=true
     nn.type: 'app'
   tty: true
   image: linuxserver/nzbget
@@ -42,4 +43,5 @@ nzbget-le:
   labels:
     io.rancher.container.create_agent: 'true'
     io.rancher.container.agent.role: 'environment'
+    io.rancher.scheduler.affinity:host_label: config_store=true
     nn.type: 'cert'
