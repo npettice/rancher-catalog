@@ -22,6 +22,11 @@
       required: true
       default: "nzbget.domain.com"
       type: "string"
+    - variable: "nzbget_fqdn"
+      label: "NZBGet IP"
+      required: true
+      default: "192.168.1.10"
+      type: "string"
     - variable: "le_email"
       label: "LetsEncrypt Email"
       required: true
