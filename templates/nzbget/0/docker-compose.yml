@@ -1,6 +1,6 @@
 nzbget-lb:
   ports:
-  - ${nzbget_ip}:443:6789
+  - ${nzbget_ip}:443:36789
   labels:
     io.rancher.loadbalancer.ssl.ports: '443'
     io.rancher.scheduler.affinity:host_label: lb_host=true
@@ -12,7 +12,7 @@ nzbget-lb:
   stdin_open: true
 nzbget-app:
   ports:
-    - 6789
+    - 36789:6789
   environment:
     PUID: '5000'
     PGID: '5000'
