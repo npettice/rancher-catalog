@@ -22,7 +22,7 @@
       required: true
       default: "nzbget.domain.com"
       type: "string"
-    - variable: "nzbget_fqdn"
+    - variable: "nzbget_ip"
       label: "NZBGet IP"
       required: true
       default: "192.168.1.10"
@@ -52,14 +52,14 @@ nzbget-app:
   scale: 1
 nzbget-le:
   scale: 1
-  nzbget-lb:
-    scale: 1
-    load_balancer_config:
-      haproxy_config: {}
-    default_cert: ${nzbget_fqdn}
-    health_check:
-      port: 42
-      interval: 2000
-      unhealthy_threshold: 3
-      healthy_threshold: 2
-      response_timeout: 2000
+nzbget-lb:
+  scale: 1
+  load_balancer_config:
+    haproxy_config: {}
+  default_cert: ${nzbget_fqdn}
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
