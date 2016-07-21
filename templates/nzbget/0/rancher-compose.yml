@@ -47,3 +47,14 @@ nzbget-app:
   scale: 1
 nzbget-le:
   scale: 1
+  nzbget-lb:
+    scale: 1
+    load_balancer_config:
+      haproxy_config: {}
+    default_cert: ${nzbget_fqdn}
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
