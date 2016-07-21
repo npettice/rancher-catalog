@@ -17,14 +17,33 @@
       required: true
       default: "nzbget-downloads"
       type: "string"
+    - variable: "nzbget_fqdn"
+      label: "NZBGet FQDN"
+      required: true
+      default: "nzbget.domain.com"
+      type: "string"
+    - variable: "le_email"
+      label: "LetsEncrypt Email"
+      required: true
+      default: "email@domain.com"
+      type: "string"
+    - variable: "le_volume"
+      label: "LetsEncrypt Volume"
+      required: true
+      default: "nzbget-certificates"
+      type: "string"
+    - variable: "aws_access_key"
+      label: "AWS Access Key"
+      required: true
+      default: "AKIAIOSFODNN7EXAMPLE"
+      type: "string"
+    - variable: "aws_secret_key"
+      label: "AWS Secret Key"
+      required: true
+      default: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+      type: "string"
 
-nzbget:
+nzbget-app:
   scale: 1
-  health_check:
-    port: 6789
-    interval: 2000
-    initializing_timeout: 60000
-    unhealthy_threshold: 3
-    strategy: recreate
-    healthy_threshold: 2
-    response_timeout: 2000
+nzbget-le:
+  scale: 1

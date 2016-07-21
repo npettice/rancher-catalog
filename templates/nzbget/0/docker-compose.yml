@@ -1,13 +1,41 @@
-nzbget:
+nzbget-lb:
   ports:
-  - 6789:6789/tcp
+  - 192.168.55.50:443:6789
+  labels:
+    io.rancher.loadbalancer.ssl.ports: '443'
+    io.rancher.scheduler.affinity:host_label: lb_host=true
+    nn.type: 'lb'
+  tty: true
+  image: rancher/load-balancer-service
+  stdin_open: true
+nzbget-app:
   environment:
     PUID: '5000'
     PGID: '5000'
   labels:
     io.rancher.container.pull_image: always
+    nn.type: 'app'
   tty: true
   image: linuxserver/nzbget
   volumes:
-  - /remote/config/nzbget:/config
-  - /incoming/nzb:/downloads
+  - ${nzbget_config_volume}:/config
+  - ${nzbget_downloads_volume}:/downloads
+nzbget-le:
+  image: janeczku/rancher-letsencrypt:v0.3.0
+  environment:
+    EULA: Yes
+    API_VERSION: Production
+    CERT_NAME: ${nzbget_fqdn}
+    EMAIL: ${le_email}
+    DOMAINS: ${nzbget_fqdn}
+    PUBLIC_KEY_TYPE: RSA-4096
+    RENEWAL_TIME: '12'
+    PROVIDER: Route53
+    AWS_ACCESS_KEY: ${aws_access_key}
+    AWS_SECRET_KEY: ${aws_secret_key}
+  volumes:
+    - ${le_volume}/etc/letsencrypt/production/certs
+  labels:
+    io.rancher.container.create_agent: 'true'
+    io.rancher.container.agent.role: 'environment'
+    nn.type: 'cert'
