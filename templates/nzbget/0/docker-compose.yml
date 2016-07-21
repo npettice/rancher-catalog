@@ -11,6 +11,8 @@ nzbget-lb:
   - nzbget-app:nzbget-app
   stdin_open: true
 nzbget-app:
+  ports:
+    - 6789
   environment:
     PUID: '5000'
     PGID: '5000'
