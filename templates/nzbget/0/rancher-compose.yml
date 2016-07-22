@@ -27,27 +27,6 @@
       required: true
       default: "192.168.1.10"
       type: "string"
-    - variable: "le_email"
-      label: "LetsEncrypt Email"
-      required: true
-      default: "email@domain.com"
-      type: "string"
-    - variable: "le_volume"
-      label: "LetsEncrypt Volume"
-      required: true
-      default: "nzbget-certificates"
-      type: "string"
-    - variable: "aws_access_key"
-      label: "AWS Access Key"
-      required: true
-      default: "AKIAIOSFODNN7EXAMPLE"
-      type: "string"
-    - variable: "aws_secret_key"
-      label: "AWS Secret Key"
-      required: true
-      default: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
-      type: "string"
-
 nzbget-app:
   scale: 1
 nzbget-le:

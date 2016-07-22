@@ -13,26 +13,6 @@ nzbget-app:
   volumes:
     - ${nzbget_config_volume}:/config
     - ${nzbget_downloads_volume}:/downloads
-nzbget-le:
-  image: janeczku/rancher-letsencrypt:v0.3.0
-  environment:
-    EULA: 'Yes'
-    API_VERSION: Production
-    CERT_NAME: ${nzbget_fqdn}
-    EMAIL: ${le_email}
-    DOMAINS: ${nzbget_fqdn}
-    PUBLIC_KEY_TYPE: RSA-4096
-    RENEWAL_TIME: '12'
-    PROVIDER: Route53
-    AWS_ACCESS_KEY: ${aws_access_key}
-    AWS_SECRET_KEY: ${aws_secret_key}
-  volumes:
-    - ${le_volume}:/etc/letsencrypt/production/certs
-  labels:
-    io.rancher.container.create_agent: 'true'
-    io.rancher.container.agent.role: 'environment'
-    io.rancher.scheduler.affinity:host_label: config_store=true
-    nn.type: 'cert'
 nzbget-lb:
   ports:
     - ${nzbget_ip}:443:6789
